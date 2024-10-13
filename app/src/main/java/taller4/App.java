@@ -13,6 +13,12 @@ public class App {
         //Coloque los llamados a cada función de acuerdo con cada enunciado
         //codifique el control de errores para el main
 
+    System.out.println(NUmImpar(234));
+    System.out.println(Fibonacci(10));
+    System.out.println(RandomRaiz());
+    System.out.println(RandomNUme(400, 300));
+    System.out.println(SumaRandom(200, 500));
+    System.out.println(sorteoLoteria());
 
     }
 
@@ -25,7 +31,45 @@ public class App {
      * hasta ese número separados por comas en grupos de hasta 8 números.
      * 
     */
+ public static String NUmImpar(int Numero){
+        try {
+            
+            final short Nm100 = 100; 
+            final short Num500 = 500;
+            final short CantNm8 = 8;
+         
+ 
+            if(Numero < Nm100 || Numero > Num500){
+                System.out.println("Numero no valido"); }
+            else{
+                int Nume = 0;
+        
+            for(short NmMin = 1; NmMin < Numero; NmMin+=2){
+                System.out.print(NmMin +", " ); 
+                 Nume++;
 
+                if(Nume == CantNm8){
+                    System.out.println("");
+                    Nume = 0;
+                 }
+                  
+                
+            }
+        }
+           
+        return "";
+            
+        } catch (Exception e) {
+            return "Ocurrio un error \n";
+        }
+    }
+
+
+
+   
+    
+
+ 
     /* 2. 	Escriba una función que reciba un entero N mayor de 2  y retorne un string cono esos N términos de la 
     serie de Fibonacci (La sucesión de Fibonacci se trata de una serie infinita de números naturales que empieza con un 0 y un 1 
     y continúa añadiendo números que son la suma de los dos anteriores: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 
@@ -33,6 +77,38 @@ public class App {
      * 
      * 
     */
+    public static String Fibonacci(int Num) {
+        try {
+            if (Num < 2) {
+                System.out.print("Numero no valido");
+                
+            } else {
+                int Cero = 0, Uno = 1, resultado = 0;
+                 
+               
+                   
+                for (int i = 0; i < Num; i++) { 
+                    
+                   
+                    
+                    
+                    Cero = Uno;
+                    Uno = resultado;
+                    resultado = Cero + Uno; 
+                    
+                    System.out.print( + resultado+", ");
+                }
+            } 
+            return "";
+
+
+        } catch (Exception e) {
+            return "Ocurrio un error \n";
+        }
+        
+    }
+    
+
 
     /* 
      * 3.	Diseñar y desarrollar una función que NO reciba datos de entrada, genere aleatoriamente un número entre 2 y 355, 
@@ -43,6 +119,28 @@ public class App {
 
     */
 
+    public static String RandomRaiz(){
+
+        try {
+            
+            final int max = 30, min = 20;
+            final int maxR = 355, minR = 2;
+            int Aleatorio = min + (int) ((max - min + 1) * Math.random());
+            String txt_return = "";
+
+            for(int i = 0;i <= Aleatorio; i++){
+                int AleatorioR = minR + (int) ((maxR - minR + 1) * Math.random());
+                int Raiz = (int) Math.sqrt(AleatorioR);
+
+                txt_return+=("Numero: " +AleatorioR+ ", Raiz: "+Raiz +" (redondeada)\n");
+            }
+         
+            
+            return txt_return;
+        } catch (Exception e) {
+           return "Ocurrio un error \n"+ e;
+        }
+    }
 
 
 
@@ -53,6 +151,41 @@ public class App {
         Llame la función desde el main e imprimir el resultado arrojado.
     */
 
+    public static String RandomNUme(int NumMin, int NumMax){
+
+        try {
+
+            final int CantNum = 900;
+            int NumAleatorio;
+            int Num2 = 2, Num0 = 0;
+            int NumPar = 0;
+            String txt_return= "";
+
+            if(NumMin >= NumMax){
+                txt_return += "Rango de Numeros Invalido";
+            } 
+            else{
+            for(int i = 0;i < CantNum; i++){
+                NumAleatorio = NumMin + (int) ((NumMax - NumMin + 1) * Math.random());
+
+                if(NumAleatorio%Num2 == Num0){
+                   
+                    NumPar++;
+                    
+                }
+              
+            }
+            txt_return += " \nCantidad de números pares: " + NumPar;
+        }       
+       
+            return txt_return; 
+
+
+        } catch (Exception e) {
+          return "Ocurrio un error \n" + e;
+        }
+       
+    }
 
 
 
@@ -63,7 +196,37 @@ public class App {
 
       
     */
+  
 
+    
+public static String SumaRandom(int Min1, int Max1){
+    try {
+        int NumAleatorio1;
+        int NumAleatorio2;
+        int SumaAleatorio = 0;
+        String txt_return = "";
+
+        NumAleatorio1 = Min1 + (int) ((Max1 - Min1 + 1) * Math.random());
+
+        if(Min1 >= Max1){
+            System.out.println("Rango de Numeros Invalido");
+        } 
+    
+        for(int i = 0;i <= NumAleatorio1; i++){
+            NumAleatorio2 = Min1 + (int) ((Max1 - Min1 + 1) * Math.random());
+            SumaAleatorio += NumAleatorio2;
+           
+        }
+            txt_return += ("La suma de los aleatorios es de: " + SumaAleatorio);
+            return txt_return;
+            
+ 
+
+    } catch (Exception e) {
+        return "Ocurrio un error \n" + e;
+    }  
+   
+}
 
     /* 6.	Se requiere una función para simular el sorteo de una lotería, de acuerdo con las siguientes condiciones:
 
@@ -100,9 +263,42 @@ public class App {
             La función no recibe parámetros y devuelve un string con toda la lista de premios. El main, invoca la función 
             e imprime el resultado que esta arroje. 
 
+            
 
      * 
      * 
     */
+ public static String sorteoLoteria() {
+        try {
+            String resultado = "";
+   
+        for (int i = 20; i >= 1; i--) {
+           
+             int numeroPremiado = (int) (Math.random() * 10000); 
+           
+            int serie = (int) (Math.random() * (150 - 100 + 1)) + 100; 
+
+           
+            if (i == 20) {
+                resultado += "======PREMIOS MENORES=======\n";
+            }
+
+            if (i == 5) {
+                resultado += "\n======PREMIOS SECOS=========\n";
+            }
+
+            if (i == 1) {
+                resultado += "\n======Premio mayor==========\n";
+            }
+
+            resultado += "Sorteo # " + i + "  - Número Premiado " + String.format("%04d", numeroPremiado) + " - Serie " + serie + "\n";
+        }
+
+        return resultado;
+        } catch (Exception e) {
+           return "Ocurrio un error \n" + e;
+        }
+        
+    }
 
 }
